@@ -8,10 +8,10 @@ client.on('ready', ()=>{
 client.on('message',message => {
      if (message.author.bot) return;
      if (message.content.toLowerCase().includes('ping')){
-         //message.reply('Pong!');
         currentDate = new Date();
          //client.channels.get('692070737900470323').send('🕔');
-         client.channels.get('692070737900470323').send(Date(1489199400000));
+         client.channels.get('692070737900470323').send('Ping');
+         client.channels.get('692070737900470323').send(Date(1489199400000).toString());
      }
 });
 
