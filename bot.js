@@ -58,11 +58,11 @@ client.on('messageReactionAdd', (reaction, user)=>{
     client.channels.get('692133614363738184').send(user.username + " reacted with " + reaction.emoji.name + " at " + hour_ +':'+ minute_);
 })
 
-client.on("message", message => {
-    if(message.author.bot)return
-    if(message.content.toLocaleLowerCase().includes('test')){
-        client.channels.get('692133614363738184').send("Test complete!");
-    }
-})
+//client.on("message", message => {
+//    if(message.author.bot)return
+//    if(message.content.toLocaleLowerCase().includes('test')){
+//        client.channels.get('692133614363738184').send("Test complete!");
+//    }
+//})
 
 client.login(process.env.BOT_TOKEN);
