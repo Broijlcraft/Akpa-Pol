@@ -3,7 +3,7 @@ var client = new discord.Client();
 
 client.on('ready', ()=>{
     console.log('online');
-    client.channels.get('692070737900470323').send('@everyone de les begint');
+    client.channels.get('692070737900470323').send('🕗');
 });
 
 client.on('message',message => {
