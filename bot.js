@@ -60,7 +60,7 @@ client.on('messageReactionAdd', (reaction, user)=>{
 
 client.on("message", message => {
     if(message.content.toLocaleLowerCase().includes('test')){
-        client.channels.get('692133614363738184').send("Test complete!");
+        //client.channels.get('692133614363738184').send("Test complete!");
     }
 })
 
