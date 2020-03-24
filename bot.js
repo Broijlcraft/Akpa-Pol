@@ -10,6 +10,7 @@ client.on('message',message => {
      if (message.content.toLowerCase().includes('ping')){
          message.reply('Pong!');
          client.channels.get('692070737900470323').send('🕗');
+         client.channels.get('692070737900470323').send('🕔');
      }
 });
 
