@@ -60,26 +60,26 @@ client.on('messageReactionAdd', (reaction, user)=>{
     client.channels.get('692070737900470323').send(user.username + " reacted with " + reaction.emoji.name + " at " + hour_ +':'+ minute_);
 })
 
-client.on("message", message => {
-    if(message.author.bot){return}
-        if(message.content.toLocaleLowerCase().includes('test')){   
-            client.channels.get('647489487127183383').send('@everyone');
-            client.channels.get('647489487127183383').send({embed: {
-                color: 15844367,
-                title: "Click emoji pada waktu Check-out:",
-                    fields: [
-                        { name: "Click reaction", value: "🅰️   Untuk AKPA", inline: true},
-                        { name: "Click reaction", value: "🇵    Untuk Polaris ", inline: true}
-                    ]
-                }
-            }).then(sentEmbed => {sentEmbed.react('🅰️'),sentEmbed.react('🇵')});
-            client.channels.get('692070737900470323').send({embed: {
-                color: 15844367,
-                title: "Check-out:"
-                }
-            })            
-        };
-    }
-)
+//client.on("message", message => {
+//    if(message.author.bot){return}
+//        if(message.content.toLocaleLowerCase().includes('test')){   
+//            client.channels.get('647489487127183383').send('@everyone');
+//            client.channels.get('647489487127183383').send({embed: {
+//                color: 15844367,
+//                title: "Click emoji pada waktu Check-out:",
+//                    fields: [
+//                        { name: "Click reaction", value: "🅰️   Untuk AKPA", inline: true},
+//                        { name: "Click reaction", value: "🇵    Untuk Polaris ", inline: true}
+//                    ]
+//                }
+//            }).then(sentEmbed => {sentEmbed.react('🅰️'),sentEmbed.react('🇵')});
+//            client.channels.get('692070737900470323').send({embed: {
+//                color: 15844367,
+//                title: "Check-out:"
+//                }
+//            })            
+//        };
+//    }
+//)
 
 client.login(process.env.BOT_TOKEN);
