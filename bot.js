@@ -61,7 +61,7 @@ client.on('messageReactionAdd', (reaction, user)=>{
 })
 
 client.on("message", message => {
-    if(message.author.bot)return
+    if(message.author.bot){return}
         if(message.content.toLocaleLowerCase().includes('test')){   
             client.channels.get('647489487127183383').send('@everyone');
             client.channels.get('647489487127183383').send({embed: {
@@ -72,17 +72,14 @@ client.on("message", message => {
                         { name: "Click reaction", value: "🇵    Untuk Polaris ", inline: true}
                     ]
                 }
-            }).then(sentEmbed => {
-                sentEmbed.react('🅰️'),
-                sentEmbed.react('🇵')
-            });
+            }).then(sentEmbed => {sentEmbed.react('🅰️'),sentEmbed.react('🇵')});
             client.channels.get('692070737900470323').send({embed: {
                 color: 15844367,
                 title: "Check-out:"
                 }
             })            
-        }, 60000);
+        };
     }
-})
+)
 
 client.login(process.env.BOT_TOKEN);
