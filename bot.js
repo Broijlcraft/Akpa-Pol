@@ -53,7 +53,7 @@ client.on('ready', ()=>{
 
 client.on('messageReactionAdd', (reaction, user)=>{
     if(user.bot)return
-    if(reaction.message.channel.id === '647489487127183383') {
+    if(reaction.message.channel.id === '692019853598392340') {
         console.log(user.username + " reacted with " + reaction.emoji.name + " " + reaction.count);
         currentDate = new Date();
         var hour_ = currentDate.getHours();
