@@ -6,7 +6,8 @@ client.on('ready', ()=>{
         currentDate = new Date();
         var hour_ = currentDate.getHours();
         var minute_ = currentDate.getMinutes();
-        if(hour_ === 00 && minute_ === 45){
+        //if(hour_ === 00 && minute_ === 45){
+        if(hour_ === 00){
             client.channels.get('692019853598392340').send('@everyone');
             client.channels.get('692019853598392340').send({embed: {
                 color: 15844367,
@@ -26,6 +27,7 @@ client.on('ready', ()=>{
                 }
             })
         }    
+        //if(hour_ === 09 && minute_ === 45){
         if(hour_ === 09 && minute_ === 45){
             client.channels.get('692019853598392340').send('@everyone');
             client.channels.get('692019853598392340').send({embed: {
