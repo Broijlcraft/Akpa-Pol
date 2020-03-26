@@ -59,7 +59,15 @@ client.on('messageReactionAdd', (reaction, user)=>{
         var hour_ = currentDate.getHours();
         var minute_ = currentDate.getMinutes();
         hour_ = hour_ + 7;
-        client.channels.get('692133614363738184').send(user.username + " reacted with " + reaction.emoji.name + " at " + hour_ +':'+ minute_);
+        client.channels.get('692133614363738184').send({embed: {
+            color: 15844367,
+            title: "Employee:",
+            fields: [
+                    { name: "Info", value: "Name: " + user.username + "\nReaction: " + reaction.emoji.name + "\nTime: " + hour_ + ':' + minute_ , inline: false},
+                ]
+            }
+        });
+        //client.channels.get('692133614363738184').send(user.username + " reacted with " + reaction.emoji.name + " at " + hour_ +':'+ minute_);
         //client.channels.get('692070737900470323').send(user.username + " reacted with " + reaction.emoji.name + " at " + hour_ +':'+ minute_);
     }
 })
