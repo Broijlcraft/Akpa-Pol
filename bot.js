@@ -6,10 +6,9 @@ client.on('ready', ()=>{
         currentDate = new Date();
         var hour_ = currentDate.getHours();
         var minute_ = currentDate.getMinutes();
-        //if(hour_ === 0 && minute_ === 45){
         if(hour_ === 0 && minute_ === 1){
-            client.channels.get('692019853598392340').send('@everyone');
-            client.channels.get('692019853598392340').send({embed: {
+            client.channels.get(process.env.SURVEY_CHANNEL).send('@everyone');
+            client.channels.get(process.env.SURVEY_CHANNEL).send({embed: {
                 color: 15844367,
                 title: "Click emoji pada waktu Check-in. Paling cepat 15 menit sebelum Jam kerja:",
                     fields: [
@@ -21,16 +20,15 @@ client.on('ready', ()=>{
                 sentEmbed.react('🅰️'),
                 sentEmbed.react('🇵')
             });            
-            client.channels.get('692133614363738184').send({embed: {
+            client.channels.get(process.env.RESULTS_CHANNEL).send({embed: {
                 color: 15844367,
                 title: "Check-in:"
                 }
             })
         }    
-        //if(hour_ === 09 && minute_ === 45){
         if(hour_ === 9 && minute_ === 58){
-            client.channels.get('692019853598392340').send('@everyone');
-            client.channels.get('692019853598392340').send({embed: {
+            client.channels.get(process.env.SURVEY_CHANNEL).send('@everyone');
+            client.channels.get(process.env.SURVEY_CHANNEL).send({embed: {
                 color: 15844367,
                 title: "Click emoji pada waktu Check-out:",
                     fields: [
@@ -42,7 +40,7 @@ client.on('ready', ()=>{
                 sentEmbed.react('🅰️'),
                 sentEmbed.react('🇵')
             });
-            client.channels.get('692133614363738184').send({embed: {
+            client.channels.get(process.env.RESULTS_CHANNEL).send({embed: {
                 color: 15844367,
                 title: "Check-out:"
                 }
@@ -53,13 +51,13 @@ client.on('ready', ()=>{
 
 client.on('messageReactionAdd', (reaction, user)=>{
     if(user.bot)return 
-    if(reaction.message.channel.id === '692019853598392340') {
+    if(reaction.message.channel.id === process.env.SURVEY_CHANNEL) {
         console.log(user.username + " reacted with " + reaction.emoji.name + " " + reaction.count);
         currentDate = new Date();
         var hour_ = currentDate.getHours();
         var minute_ = currentDate.getMinutes();
         hour_ = hour_ + 7;
-        client.channels.get('692133614363738184').send({embed: {
+        client.channels.get(process.env.RESULTS_CHANNEL).send({embed: {
             color: 15844367,
             title: "Employee:",
             fields: [
@@ -67,31 +65,31 @@ client.on('messageReactionAdd', (reaction, user)=>{
                 ]
             }
         });
-        //client.channels.get('692133614363738184').send(user.username + " reacted with " + reaction.emoji.name + " at " + hour_ +':'+ minute_);
-        //client.channels.get('692070737900470323').send(user.username + " reacted with " + reaction.emoji.name + " at " + hour_ +':'+ minute_);
     }
 })
 
-//client.on("message", message => {
-//    if(message.author.bot){return}
-//        if(message.content.toLocaleLowerCase().includes('test')){   
-//            client.channels.get('647489487127183383').send('@everyone');
-//            client.channels.get('647489487127183383').send({embed: {
-//                color: 15844367,
-//                title: "Click emoji pada waktu Check-out:",
-//                    fields: [
-//                        { name: "Click reaction", value: "🅰️   Untuk AKPA", inline: true},
-//                        { name: "Click reaction", value: "🇵    Untuk Polaris ", inline: true}
-//                    ]
-//                }
-//            }).then(sentEmbed => {sentEmbed.react('🅰️'),sentEmbed.react('🇵')});
-//            client.channels.get('692070737900470323').send({embed: {
-//                color: 15844367,
-//                title: "Check-out:"
-//                }
-//            })            
-//        };
-//    }
-//)
+client.on("message", message => {
+    if(message.author.bot){return}
+        if(message.channel.id === process.env.BOT_TEST_SURVEY_CHANNEL){
+            if(message.content.toLocaleLowerCase().includes('test')){   
+                client.channels.get(process.env.BOT_TEST_SURVEY_CHANNEL).send('@everyone');
+                client.channels.get(process.env.BOT_TEST_SURVEY_CHANNEL).send({embed: {
+                    color: 15844367,
+                    title: "Click emoji pada waktu Check-out:",
+                    fields: [
+                        { name: "Click reaction", value: "🅰️   Untuk AKPA", inline: true},
+                        { name: "Click reaction", value: "🇵    Untuk Polaris ", inline: true}
+                    ]
+                }
+                }).then(sentEmbed => {sentEmbed.react('🅰️'),sentEmbed.react('🇵')});
+                client.channels.get(process.env.BOT_TEST_RESULTS_CHANNEL).send({embed: {
+                    color: 15844367,
+                    title: "Check-out:"
+                    }
+                })            
+            };
+        }
+    }
+)
 
 client.login(process.env.BOT_TOKEN);
