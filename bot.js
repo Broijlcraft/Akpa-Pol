@@ -1,51 +1,54 @@
 const discord = require('discord.js');
 var client = new discord.Client();
 
-client.on('ready', ()=>{        
-    setInterval(function() {
-        currentDate = new Date();
-        var hour_ = currentDate.getHours();
-        var minute_ = currentDate.getMinutes();
+client.on('ready', ()=>{       
+setInterval(function() {
+    currentDate = new Date();
+    var day_ = currentDate.getDay();
+    var hour_ = currentDate.getHours();
+    var minute_ = currentDate.getMinutes();
+    if(day_ < 6){
         if(hour_ === 0 && minute_ === 1){
             client.channels.get(process.env.SURVEY_CHANNEL).send('@everyone');
-            client.channels.get(process.env.SURVEY_CHANNEL).send({embed: {
-                color: 15844367,
-                title: "Click emoji pada waktu Check-in. Paling cepat 15 menit sebelum Jam kerja:",
-                    fields: [
-                        { name: "Click reaction", value: "🅰️    Untuk AKPA", inline: true},
-                        { name: "Click reaction", value: "🇵    Untuk Polaris ", inline: true}
-                    ]
-                }
-            }).then(sentEmbed => {
-                sentEmbed.react('🅰️'),
-                sentEmbed.react('🇵')
-            });            
-            client.channels.get(process.env.RESULTS_CHANNEL).send({embed: {
-                color: 15844367,
-                title: "Check-in:"
-                }
-            })
-        }    
-        if(hour_ === 9 && minute_ === 58){
-            client.channels.get(process.env.SURVEY_CHANNEL).send('@everyone');
-            client.channels.get(process.env.SURVEY_CHANNEL).send({embed: {
-                color: 15844367,
-                title: "Click emoji pada waktu Check-out:",
-                    fields: [
-                        { name: "Click reaction", value: "🅰️   Untuk AKPA", inline: true},
-                        { name: "Click reaction", value: "🇵    Untuk Polaris ", inline: true}
-                    ]
-                }
-            }).then(sentEmbed => {
-                sentEmbed.react('🅰️'),
-                sentEmbed.react('🇵')
-            });
-            client.channels.get(process.env.RESULTS_CHANNEL).send({embed: {
-                color: 15844367,
-                title: "Check-out:"
-                }
-            })
-        }    
+                client.channels.get(process.env.SURVEY_CHANNEL).send({embed: {
+                    color: 15844367,
+                    title: "Click emoji pada waktu Check-in. Paling cepat 15 menit sebelum Jam kerja:",
+                        fields: [
+                            { name: "Click reaction", value: "🅰️    Untuk AKPA", inline: true},
+                            { name: "Click reaction", value: "🇵    Untuk Polaris ", inline: true}
+                        ]
+                    }
+                }).then(sentEmbed => {
+                    sentEmbed.react('🅰️'),
+                    sentEmbed.react('🇵')
+                });            
+                client.channels.get(process.env.RESULTS_CHANNEL).send({embed: {
+                    color: 15844367,
+                    title: "Check-in:"
+                    }
+                })
+            }    
+            if(hour_ === 9 && minute_ === 58){
+                client.channels.get(process.env.SURVEY_CHANNEL).send('@everyone');
+                client.channels.get(process.env.SURVEY_CHANNEL).send({embed: {
+                    color: 15844367,
+                    title: "Click emoji pada waktu Check-out:",
+                        fields: [
+                            { name: "Click reaction", value: "🅰️   Untuk AKPA", inline: true},
+                            { name: "Click reaction", value: "🇵    Untuk Polaris ", inline: true}
+                        ]
+                    }
+                }).then(sentEmbed => {
+                    sentEmbed.react('🅰️'),
+                    sentEmbed.react('🇵')
+                });
+                client.channels.get(process.env.RESULTS_CHANNEL).send({embed: {
+                    color: 15844367,
+                    title: "Check-out:"
+                    }
+                })
+            } 
+        }
     }, 60000);
 });
 
@@ -82,11 +85,7 @@ client.on("message", message => {
                     ]
                 }
                 }).then(sentEmbed => {sentEmbed.react('🅰️'),sentEmbed.react('🇵')});
-                client.channels.get(process.env.BOT_TEST_RESULTS_CHANNEL).send({embed: {
-                    color: 15844367,
-                    title: "Check-out:"
-                    }
-                })            
+                client.channels.get(process.env.BOT_TEST_RESULTS_CHANNEL).send(process.env.LOW_KEY);            
             };
         }
     }
