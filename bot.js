@@ -8,7 +8,7 @@ setInterval(function() {
     var hour_ = currentDate.getHours();
     var minute_ = currentDate.getMinutes();
     if(day_ < 6){
-        if(hour_ === 0 && minute_ === 1){
+        if(hour_ === 1 && minute_ === 1){
             client.channels.get(process.env.SURVEY_CHANNEL).send('@everyone');
                 client.channels.get(process.env.SURVEY_CHANNEL).send({embed: {
                     color: 15844367,
@@ -28,7 +28,7 @@ setInterval(function() {
                     }
                 })
             }    
-            if(hour_ === 9 && minute_ === 58){
+            if(hour_ === 10 && minute_ === 58){
                 client.channels.get(process.env.SURVEY_CHANNEL).send('@everyone');
                 client.channels.get(process.env.SURVEY_CHANNEL).send({embed: {
                     color: 15844367,
