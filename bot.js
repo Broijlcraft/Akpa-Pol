@@ -75,7 +75,7 @@ client.on("message", message => {
     if(message.author.bot){return}
         if(message.channel.id === process.env.BOT_TEST_SURVEY_CHANNEL){
             if(message.content.toLocaleLowerCase().includes('test')){   
-                if(if(day_ > 0 || day_ < 6){
+                if(day_ > 0 || day_ < 6){
                     client.channels.get(process.env.BOT_TEST_SURVEY_CHANNEL).send('@everyone');
                     client.channels.get(process.env.BOT_TEST_SURVEY_CHANNEL).send({embed: {
                         color: 15844367,
