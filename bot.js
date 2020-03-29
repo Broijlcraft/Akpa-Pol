@@ -75,6 +75,8 @@ client.on("message", message => {
     if(message.author.bot){return}
         if(message.channel.id === process.env.BOT_TEST_SURVEY_CHANNEL){
             if(message.content.toLocaleLowerCase().includes('test')){   
+                currentDate = new Date();
+                var day_ = currentDate.getDay();
                 if(day_ > 0 || day_ < 6){
                     client.channels.get(process.env.BOT_TEST_SURVEY_CHANNEL).send('@everyone');
                     client.channels.get(process.env.BOT_TEST_SURVEY_CHANNEL).send({embed: {
@@ -86,8 +88,6 @@ client.on("message", message => {
                         ]
                     }
                     }).then(sentEmbed => {sentEmbed.react('🅰️'),sentEmbed.react('🇵')});
-                    currentDate = new Date();
-                    var day_ = currentDate.getDay();
                     client.channels.get(process.env.BOT_TEST_RESULTS_CHANNEL).send(day_); 
                     client.channels.get(process.env.BOT_TEST_RESULTS_CHANNEL).send(process.env.LOW_KEY);
                 } else {                    
