@@ -85,7 +85,10 @@ client.on("message", message => {
                     ]
                 }
                 }).then(sentEmbed => {sentEmbed.react('🅰️'),sentEmbed.react('🇵')});
-                client.channels.get(process.env.BOT_TEST_RESULTS_CHANNEL).send(process.env.LOW_KEY);            
+                currentDate = new Date();
+                var day_ = currentDate.getDay();
+                client.channels.get(process.env.BOT_TEST_RESULTS_CHANNEL).send(day_); 
+                client.channels.get(process.env.BOT_TEST_RESULTS_CHANNEL).send(process.env.LOW_KEY); 
             };
         }
     }
