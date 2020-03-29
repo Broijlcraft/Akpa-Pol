@@ -77,21 +77,25 @@ client.on("message", message => {
             if(message.content.toLocaleLowerCase().includes('test')){   
                 currentDate = new Date();
                 var day_ = currentDate.getDay();
-                if(day_ > 0 || day_ < 6){
-                    client.channels.get(process.env.BOT_TEST_SURVEY_CHANNEL).send('@everyone');
-                    client.channels.get(process.env.BOT_TEST_SURVEY_CHANNEL).send({embed: {
-                        color: 15844367,
-                        title: "Click emoji pada waktu Check-out:",
-                        fields: [
-                            { name: "Click reaction", value: "🅰️   Untuk AKPA", inline: true},
-                            { name: "Click reaction", value: "🇵    Untuk Polaris ", inline: true}
-                        ]
+                if(day_ > 0){
+                    if(day_ < 6) {
+                        client.channels.get(process.env.BOT_TEST_SURVEY_CHANNEL).send('@everyone');
+                        client.channels.get(process.env.BOT_TEST_SURVEY_CHANNEL).send({embed: {
+                            color: 15844367,
+                            title: "Click emoji pada waktu Check-out:",
+                            fields: [
+                                { name: "Click reaction", value: "🅰️   Untuk AKPA", inline: true},
+                                { name: "Click reaction", value: "🇵    Untuk Polaris ", inline: true}
+                            ]
+                        }
+                        }).then(sentEmbed => {sentEmbed.react('🅰️'),sentEmbed.react('🇵')});
+                        client.channels.get(process.env.BOT_TEST_RESULTS_CHANNEL).send(day_); 
+                        client.channels.get(process.env.BOT_TEST_RESULTS_CHANNEL).send(process.env.LOW_KEY);
+                    } else {                        
+                        client.channels.get(process.env.BOT_TEST_RESULTS_CHANNEL).send("it's saturday");
                     }
-                    }).then(sentEmbed => {sentEmbed.react('🅰️'),sentEmbed.react('🇵')});
-                    client.channels.get(process.env.BOT_TEST_RESULTS_CHANNEL).send(day_); 
-                    client.channels.get(process.env.BOT_TEST_RESULTS_CHANNEL).send(process.env.LOW_KEY);
                 } else {                    
-                    client.channels.get(process.env.BOT_TEST_RESULTS_CHANNEL).send("it's weekend");
+                    client.channels.get(process.env.BOT_TEST_RESULTS_CHANNEL).send("it's sunday");
                 }
             };
         }
