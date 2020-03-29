@@ -90,6 +90,8 @@ client.on("message", message => {
                     var day_ = currentDate.getDay();
                     client.channels.get(process.env.BOT_TEST_RESULTS_CHANNEL).send(day_); 
                     client.channels.get(process.env.BOT_TEST_RESULTS_CHANNEL).send(process.env.LOW_KEY);
+                } else {                    
+                    client.channels.get(process.env.BOT_TEST_RESULTS_CHANNEL).send("it's weekend");
                 }
             };
         }
