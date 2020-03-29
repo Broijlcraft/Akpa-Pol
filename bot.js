@@ -57,19 +57,24 @@ client.on('ready', ()=>{
 client.on('messageReactionAdd', (reaction, user)=>{
     if(user.bot)return 
     if(reaction.message.channel.id === process.env.SURVEY_CHANNEL) {
-        console.log(user.username + " reacted with " + reaction.emoji.name + " " + reaction.count);
         currentDate = new Date();
+        var day_ = currentDate.get
         var hour_ = currentDate.getHours();
         var minute_ = currentDate.getMinutes();
-        hour_ = hour_ + 7;
-        client.channels.get(process.env.RESULTS_CHANNEL).send({embed: {
-            color: 15844367,
-            title: "Employee:",
-            fields: [
-                    { name: "Info", value: "Name: " + user.username + "\nReaction: " + reaction.emoji.name + "\nTime: " + hour_ + ':' + minute_ , inline: false},
-                ]
+        if(day_ > 0){
+            if(day_ < 6){
+                console.log(user.username + " reacted with " + reaction.emoji.name + " " + reaction.count);
+                hour_ = hour_ + 7;
+                client.channels.get(process.env.RESULTS_CHANNEL).send({embed: {
+                    color: 15844367,
+                    title: "Employee:",
+                    fields: [
+                            { name: "Info", value: "Name: " + user.username + "\nReaction: " + reaction.emoji.name + "\nTime: " + hour_ + ':' + minute_ , inline: false},
+                        ]
+                    }
+                });
             }
-        });
+        }
     }
 })
 
