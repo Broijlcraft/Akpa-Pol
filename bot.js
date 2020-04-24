@@ -1,6 +1,6 @@
 const discord = require('discord.js');
 var client = new discord.Client();
-
+//
 client.on('ready', ()=>{       
     setInterval(function() {
         currentDate = new Date();
