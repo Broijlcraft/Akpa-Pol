@@ -77,6 +77,29 @@ client.on('messageReactionAdd', (reaction, user)=>{
     }
 })
 
+client.on('messageReactionAdd', (reaction, user)=>{
+    if(user.bot)return 
+    if(reaction.message.channel.id === process.env.BOT_TEST_SURVEY_CHANNEL) {
+        currentDate = new Date();
+        var day_ = currentDate.getDay();
+        var hour_ = currentDate.getHours();
+        var minute_ = currentDate.getMinutes();
+        if(day_ > 0){
+            if(day_ < 6){
+                hour_ = hour_ + 7;
+                client.channels.get(process.env.BOT_TEST_RESULTS_CHANNEL).send({embed: {
+                    color: 15844367,
+                    title: "Employee:",
+                    fields: [
+                            { name: "Info", value: "Name: " + user.username + "\nReaction: " + reaction.emoji.name + "\nTime: " + hour_ + ':' + minute_ , inline: false},
+                        ]
+                    }
+                });
+            }
+        }
+    }
+})
+
 client.on("message", message => {
     if(message.author.bot){return}
         if(message.channel.id === process.env.BOT_TEST_SURVEY_CHANNEL){
