@@ -1,6 +1,6 @@
 const discord = require('discord.js');
 var client = new discord.Client();
-//
+
 client.on('ready', ()=>{       
     setInterval(function() {
         currentDate = new Date();
@@ -88,7 +88,7 @@ client.on("message", message => {
                         client.channels.get(process.env.BOT_TEST_SURVEY_CHANNEL).send('@everyone');
                         client.channels.get(process.env.BOT_TEST_SURVEY_CHANNEL).send({embed: {
                             color: 15844367,
-                            title: "Click emoji pada waktu Check-out:",
+                            title: "ah the negotiator",
                             fields: [
                                 { name: "Click reaction", value: "🅰️   Untuk AKPA", inline: true},
                                 { name: "Click reaction", value: "🇵    Untuk Polaris ", inline: true}
