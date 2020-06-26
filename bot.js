@@ -84,19 +84,12 @@ client.on('messageReactionAdd', (reaction, user)=>{
         var day_ = currentDate.getDay();
         var hour_ = currentDate.getHours();
         var minute_ = currentDate.getMinutes();
-        if(day_ > 0){
-            if(day_ < 6){
-                hour_ = hour_ + 7;
-                client.channels.get(process.env.BOT_TEST_RESULTS_CHANNEL).send({embed: {
-                    color: 15844367,
-                    title: "Employee:",
-                    fields: [
-                            { name: "Info", value: "Name: " + user.username + "\nReaction: " + reaction.emoji.name + "\nTime: " + hour_ + ':' + minute_ , inline: false},
-                        ]
-                    }
-                });
-            }
-        }
+        hour_ = hour_ + 7;
+        client.channels.get(process.env.BOT_TEST_RESULTS_CHANNEL).send({embed: {
+            color: 15844367,
+            title: "Employee:",
+            fields: [{ name: "Info", value: "Name: " + user.username + "\nReaction: " + reaction.emoji.name + "\nTime: " + hour_ + ':' + minute_ , inline: false}]}
+        });
     }
 })
 
@@ -108,20 +101,8 @@ client.on("message", message => {
                 client.channels.get(process.env.BOT_TEST_SURVEY_CHANNEL).send({embed: {
                     color: 15844367,
                     title: "Button test",
-                    fields: [{ name: "Click reaction", value: "🧪   Untuk AKPA", inline: true}]}
-                    }).then(sentEmbed => {sentEmbed.react('🧪')});   
-                currentDate = new Date();
-                var day_ = currentDate.getDay();
-                if(day_ > 0){
-                    if(day_ < 6) {
-                        client.channels.get(process.env.BOT_TEST_RESULTS_CHANNEL).send(day_); 
-                        client.channels.get(process.env.BOT_TEST_RESULTS_CHANNEL).send(process.env.LOW_KEY);
-                    } else {                        
-                        client.channels.get(process.env.BOT_TEST_RESULTS_CHANNEL).send("it's saturday");
-                    }
-                } else {                    
-                    client.channels.get(process.env.BOT_TEST_RESULTS_CHANNEL).send("it's sunday");
-                }
+                    fields: [{ name: "Click reaction", value: "🧪   Untuk AKPA", inline: true}]}})
+                    .then(sentEmbed => {sentEmbed.react('🧪')});   
             };
         }
     }
