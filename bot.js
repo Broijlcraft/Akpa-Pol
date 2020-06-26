@@ -103,21 +103,17 @@ client.on('messageReactionAdd', (reaction, user)=>{
 client.on("message", message => {
     if(message.author.bot){return}
         if(message.channel.id === process.env.BOT_TEST_SURVEY_CHANNEL){
-            if(message.content.toLocaleLowerCase().includes('test')){   
+            if(message.content.toLocaleLowerCase().includes('test')){
+                client.channels.get(process.env.BOT_TEST_SURVEY_CHANNEL).send('@everyone');
+                client.channels.get(process.env.BOT_TEST_SURVEY_CHANNEL).send({embed: {
+                    color: 15844367,
+                    title: "Button test",
+                    fields: [{ name: "Click reaction", value: "🧪   Untuk AKPA", inline: true}]}
+                    }).then(sentEmbed => {sentEmbed.react('🧪')});   
                 currentDate = new Date();
                 var day_ = currentDate.getDay();
                 if(day_ > 0){
                     if(day_ < 6) {
-                        client.channels.get(process.env.BOT_TEST_SURVEY_CHANNEL).send('@everyone');
-                        client.channels.get(process.env.BOT_TEST_SURVEY_CHANNEL).send({embed: {
-                            color: 15844367,
-                            title: "ah the negotiator",
-                            fields: [
-                                { name: "Click reaction", value: "🅰️   Untuk AKPA", inline: true},
-                                { name: "Click reaction", value: "🇵    Untuk Polaris ", inline: true}
-                            ]
-                        }
-                        }).then(sentEmbed => {sentEmbed.react('🅰️'),sentEmbed.react('🇵')});
                         client.channels.get(process.env.BOT_TEST_RESULTS_CHANNEL).send(day_); 
                         client.channels.get(process.env.BOT_TEST_RESULTS_CHANNEL).send(process.env.LOW_KEY);
                     } else {                        
