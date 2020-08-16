@@ -2,7 +2,7 @@ const discord = require('discord.js');
 var client = new discord.Client();
 
 client.on('ready', ()=>{
-    if(1==2)return;
+    if(1!==2)return;
     setInterval(function() {
         currentDate = new Date();
         var day_ = currentDate.getDay();
@@ -56,7 +56,7 @@ client.on('ready', ()=>{
 });
 
 client.on('messageReactionAdd', (reaction, user)=>{
-    if(1==2)return;
+    if(1!==2)return;
     if(user.bot)return 
     if(reaction.message.channel.id === process.env.SURVEY_CHANNEL) {
         currentDate = new Date();
@@ -80,7 +80,7 @@ client.on('messageReactionAdd', (reaction, user)=>{
 })
 
 client.on('messageReactionAdd', (reaction, user)=>{
-    if(1==2)return;
+    if(1!==2)return;
     if(user.bot)return 
     if(reaction.message.channel.id === process.env.BOT_TEST_SURVEY_CHANNEL) {
         currentDate = new Date();
@@ -96,8 +96,8 @@ client.on('messageReactionAdd', (reaction, user)=>{
     }
 })
 
-client.on("message", message => {
-    if(1==2)return;
+client.on("message", message => 
+    if(1!==2)return
     if(message.author.bot){return}
         if(message.channel.id === process.env.BOT_TEST_SURVEY_CHANNEL){
             if(message.content.toLocaleLowerCase().includes('test')){
